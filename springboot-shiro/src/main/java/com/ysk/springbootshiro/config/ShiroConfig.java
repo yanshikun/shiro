@@ -30,22 +30,18 @@ public class ShiroConfig {
         * role : 拥有某个角色权限才可访问
         * */
         Map<String,String> filterMap = new LinkedHashMap<>();
-        //进入此请求，需要admin用户的add权限才可访问
+        //进入此请求，需要user:add权限才可访问
         filterMap.put("/user/add","perms[user:add]");
         filterMap.put("/user/update","perms[user:update]");
-
         filterMap.put("/user/*","authc");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
         // 登陆界面
         shiroFilterFactoryBean.setLoginUrl("/toLogin");
-
         //成功登陆后的界面
         shiroFilterFactoryBean.setSuccessUrl("/toIndex");
-
         // 跳转未授权 ，没有权限访问的界面
         shiroFilterFactoryBean.setUnauthorizedUrl("/unauthorized");
-
 
         return shiroFilterFactoryBean;
     }
